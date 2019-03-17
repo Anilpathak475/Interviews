@@ -29,7 +29,7 @@ class ClientGenerator {
     private fun createRetrofit() {
         retrofit = null
         retrofit = Retrofit.Builder()
-            .baseUrl("https://deb65b54.ngrok.io/api/v1/todo/")
+                .baseUrl("https://deb65b54.ngrok.io/")
             .client(
                 OkHttpClient.Builder()
                     .retryOnConnectionFailure(true).addInterceptor(Interceptor { chain ->
