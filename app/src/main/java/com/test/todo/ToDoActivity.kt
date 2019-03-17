@@ -13,4 +13,7 @@ class ToDoActivity : AppCompatActivity() {
         // todoRecyclerView.adapter = ToDoRecyclerViewAdapter()
     }
 
+    private fun getTodo() {
+    }
+
 }

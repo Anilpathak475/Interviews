@@ -4,12 +4,14 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +21,6 @@ import com.appify.network.models.Login
 import com.appify.network.models.LoginResponse
 import com.appify.network.store.RegisterStore
 import kotlinx.android.synthetic.main.activity_login.*
-import android.app.Activity
-import android.view.inputmethod.InputMethodManager
 
 
 /**
@@ -95,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
             RegisterStore.instance.login(Login(emailStr, passwordStr), object : DataCallback<LoginResponse> {
                 override fun onSuccess(t: LoginResponse?) {
                     showProgress(false)
+                    SharedPreferenceManager.getInstance().saveValue("token", "Bearer " + t!!.token)
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

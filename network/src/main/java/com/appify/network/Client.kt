@@ -5,10 +5,7 @@ import com.appify.network.models.LoginResponse
 import com.appify.network.models.Register
 import com.appify.network.models.Todo
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RegisterClient {
     @POST("api/v1/user_todo/register/")
@@ -26,5 +23,5 @@ interface ToDoClient {
     fun update(@Body update: Todo, @Header("Authorization") token: String): Call<Todo>
 
     @GET("api/v1/user_todo/get/")
-    fun getNewTask(@Body getNewTask: Todo, @Header("Authorization") token: String): Call<Todo>
+    fun get(@Query("date") date: String, @Header("Authorization") token: String): Call<List<Todo>>
 }
